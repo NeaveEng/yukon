@@ -7,7 +7,7 @@ on:
     types: [created]
 
 env:
-  MICROPYTHON_VERSION: b637e02b740c0172c3f311591b9898b2bafe03cc   # ProjectGus' fork in my micropython fork
+  MICROPYTHON_VERSION: df15e6172871a09a910da4e8a679934893aff584
   PIMORONI_PICO_VERSION: 7678ba5da966c3d8b7238e2b2f4e604ffe377dd6
   WORKFLOW_VERSION: v2
 
@@ -30,7 +30,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/checkout@v3
       with:
-        repository: pimoroni/micropython
+        repository: neaveeng/micropython
         ref: ${{env.MICROPYTHON_VERSION}}
         submodules: false  # MicroPython submodules are hideously broken
         path: micropython
@@ -118,15 +118,15 @@ jobs:
       run: |
         git apply "${{env.FIRMWARE_DIR}}/startup_overclock.patch"
 
-    # - name: "HACK: CMakeLists.txt Disable C++ Exceptions Patch"
-    #   shell: bash
-    #   working-directory: micropython
-    #   run: git apply "${{env.FIRMWARE_DIR}}/micropython_nano_specs.patch"
+    - name: "HACK: CMakeLists.txt Disable C++ Exceptions Patch"
+      shell: bash
+      working-directory: micropython
+      run: git apply "${{env.FIRMWARE_DIR}}/micropython_nano_specs.patch"
 
-    # - name: "HACK: Yukon Reset Patch"
-    #   shell: bash
-    #   working-directory: micropython
-    #   run: git apply "${{env.FIRMWARE_DIR}}/yukon_reset.patch"
+    - name: "HACK: Yukon Reset Patch"
+      shell: bash
+      working-directory: micropython
+      run: git apply "${{env.FIRMWARE_DIR}}/yukon_reset.patch"
 
     # Install apt packages
     - name: Install CCache & Compiler
