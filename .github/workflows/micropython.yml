@@ -7,7 +7,7 @@ on:
     types: [created]
 
 env:
-  MICROPYTHON_VERSION: b88262ce96c3433a02b2c8d984ba01e071b60c1f
+  MICROPYTHON_VERSION: b637e02b740c0172c3f311591b9898b2bafe03cc   # ProjectGus' fork in my micropython fork
   PIMORONI_PICO_VERSION: 7678ba5da966c3d8b7238e2b2f4e604ffe377dd6
   WORKFLOW_VERSION: v2
 
