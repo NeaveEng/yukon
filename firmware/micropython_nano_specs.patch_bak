@@ -1,19 +1,10 @@
-From c7243af616236a14eccbd3f410a1f33d8a5dd118 Mon Sep 17 00:00:00 2001
-From: Keegan Neave <keegan@neave.engineering>
-Date: Sun, 18 Feb 2024 14:11:27 +0000
-Subject: [PATCH 1/1] manually applied nano_specs patch
-
----
- ports/rp2/CMakeLists.txt | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
 diff --git a/ports/rp2/CMakeLists.txt b/ports/rp2/CMakeLists.txt
-index 4f84c89ed..504038c1b 100644
+index 094031c6852a..5f268414c08f 100644
 --- a/ports/rp2/CMakeLists.txt
 +++ b/ports/rp2/CMakeLists.txt
-@@ -456,6 +456,15 @@ target_link_options(${MICROPY_TARGET} PRIVATE
+@@ -374,6 +374,15 @@ target_compile_options(${MICROPY_TARGET} PRIVATE
+ target_link_options(${MICROPY_TARGET} PRIVATE
      -Wl,--defsym=__micropy_c_heap_size__=${MICROPY_C_HEAP_SIZE}
-     -Wl,--wrap=dcd_event_handler
  )
 +# Do not include stack unwinding & exception handling for C++ user modules
 +target_compile_definitions(usermod INTERFACE PICO_CXX_ENABLE_EXCEPTIONS=0)
@@ -24,9 +15,6 @@ index 4f84c89ed..504038c1b 100644
 +    -fno-use-cxa-atexit
 +>)
 +target_link_options(usermod INTERFACE -specs=nano.specs)
- 
+
  set_source_files_properties(
      ${PICO_SDK_PATH}/src/rp2_common/pico_double/double_math.c
--- 
-2.40.0.windows.1
-
