@@ -18,6 +18,8 @@
 #define TCA9555_LOCAL_MEMORY (1)
 #define TCA9555_READ_INTERNALS (1)
 
+#define MICROPY_HW_ENABLE_USBDEV (0)
+
 #define MICROPY_BOARD_EARLY_INIT board_init
 void board_init(void);
 
